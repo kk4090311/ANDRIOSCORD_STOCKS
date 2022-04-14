@@ -12,6 +12,7 @@ import Coin from '../models/Coin';
 import Stock from '../models/Stock';
 import Colors from '../constants/Colors';
 import {useColorMode} from 'native-base';
+import {NestableDraggableFlatList, NestableScrollContainer }from 'react-native-draggable-flatlist';
 
 
 interface TopMoversProps {
@@ -53,18 +54,20 @@ const Watchlist: FC<TopMoversProps> = ({ stockData, coinData}) => {
       <View
         style={[{ height: coinData.length * 75 }, styles.watchlistContainer]}
       >
-        <DraggableFlatList
-          data={stockData}
-          keyExtractor={(item) => item.id.toString()}
-          scrollEnabled={false}
-          onDragBegin={() =>
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-          }
-          onDragEnd={({ data }) => {
-            dispatch(watchlistActions.updateCoinData(data));
-          }}
-          renderItem={renderItem}
-        />
+        <NestableScrollContainer>
+            <NestableDraggableFlatList
+              data={stockData}
+              keyExtractor={(item) => item.id.toString()}
+              scrollEnabled={false}
+              onDragBegin={() =>
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+              }
+              onDragEnd={({ data }) => {
+                dispatch(watchlistActions.updateCoinData(data));
+              }}
+              renderItem={renderItem}
+            />
+         </NestableScrollContainer>
       </View>
     </View>
   );
