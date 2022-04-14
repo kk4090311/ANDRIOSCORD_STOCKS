@@ -71,9 +71,13 @@ export const fetchCoinData = () => {
 
         const stockName = stockDetails.n;
         const stockSymbol = stock.substring(4,8);
-        //const stockPrice = Number(stockDetails.pz);
-        const stockPrice = Number((stockDetails.a).substring(0,5));
+        //const stockPrice = Number(stockDetails.pz);PZ第一版
+        //const stockPrice = Number((stockDetails.a).substring(0,5));PZ第二版
         //const stockChange = Number(stockDetails.z)-Number(stockDetails.y);
+
+        const stockB = (stockDetails.b).substring( 0, (stockDetails.b).indexOf("_")  );
+        const stockPrice = Number(stockDetails.z == "-" ?  stockB : stockDetails.z);
+
         const stockChange = stockPrice-Number(stockDetails.y);
         const stockUpdown = (stockChange/stockDetails.y)*100
         stockData.push(
