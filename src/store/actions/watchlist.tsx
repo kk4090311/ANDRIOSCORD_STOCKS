@@ -71,8 +71,10 @@ export const fetchCoinData = () => {
 
         const stockName = stockDetails.n;
         const stockSymbol = stock.substring(4,8);
-        const stockPrice = Number(stockDetails.pz);
-        const stockChange = Number(stockDetails.z)-Number(stockDetails.y);
+        //const stockPrice = Number(stockDetails.pz);
+        const stockPrice = Number((stockDetails.a).substring(0,5));
+        //const stockChange = Number(stockDetails.z)-Number(stockDetails.y);
+        const stockChange = stockPrice-Number(stockDetails.y);
         const stockUpdown = (stockChange/stockDetails.y)*100
         stockData.push(
           new Stock(

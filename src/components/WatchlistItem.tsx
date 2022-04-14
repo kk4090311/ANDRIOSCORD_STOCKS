@@ -75,8 +75,10 @@ const WatchlistItem: FC<WatchlistItemProps> = ({
             style={[
               {
                 color:
-                  percentChange > 0 ? Colors.lightColor.positiveGreen : (percentChange == 0 ? '#888' : Colors.lightColor.negativeRed),
-                  //percentChange > 0 ? Colors.positiveGreen : Colors.negativeRed,
+                  percentChange > 0 ? Colors.lightColor.negativeRed : (percentChange == 0 ? '#888' : Colors.lightColor.positiveGreen),
+                  //percentChange > 0 ? Colors.positiveGreen : 
+                  //Colors.lightColor.positiveGreen
+                  //Colors.lightColor.negativeRed
               },
               Styles.changeText,
             ]}
